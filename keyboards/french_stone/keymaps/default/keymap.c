@@ -28,11 +28,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_1,     KC_H, KC_BACKSPACE, \
     KC_LCTRL, KC_A, KC_SPACE      \
   ),
-  /*
-  [0] = LAYOUT( \
-    KC_1 \
-  ),
-  */
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {

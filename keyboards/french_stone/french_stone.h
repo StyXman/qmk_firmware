@@ -35,13 +35,5 @@
     { K00,   K01,   K02,   KC_NO, KC_NO, KC_NO }, \
     { KC_NO, KC_NO, KC_NO, K13,   K14,   K15   }, \
 }
-/*
-#define LAYOUT( \
-    K00 \
-) \
-{ \
-    { K00 }, \
-}
-*/
 
 #endif
