@@ -70,8 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEBOUNCING_DELAY 5
 
 /* define if matrix has ghost (lacks anti-ghosting diodes) */
-// TODO:
-#define MATRIX_HAS_GHOST
+//#define MATRIX_HAS_GHOST
 
 /* number of backlight levels */
 
