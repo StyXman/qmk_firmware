@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER      0x0001
 #define MANUFACTURER    StyXman
 #define PRODUCT         french_stone
-#define DESCRIPTION     A Dell inspiron 1420 keyboard adapter
+#define DESCRIPTION     A Dell Inspiron 1420 keyboard adapter
 
 /* key matrix size */
 #define MATRIX_ROWS 2
