@@ -25,8 +25,12 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( \
-    KC_1,     KC_H, KC_BACKSPACE, \
+    MO(1),    KC_H, KC_BACKSPACE, \
     KC_LCTRL, KC_A, KC_SPACE      \
+  ),
+  [1] = LAYOUT( \
+    _______,           KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK, \
+    KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE,       KC_AUDIO_VOL_UP \
   ),
 };
 
