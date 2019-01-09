@@ -1,4 +1,6 @@
-aaaaaaaaaaaaaaaaaaaa                                                                   aaaaaaaaaaaaaaaaaaaa                                                  aaaaaaaaaaaaa
+
+
+
 
 17x6
 17
@@ -8,12 +10,12 @@ aaaaaaaaaaaaaaaaaaaa                                                            
 15
 11
 
-                F5             F10
-                8
-                  I             PGUP
-           F       K            PGDN
-LSHT         B N   ,   / RSHT
-LCTL Fn WIN     SPAC ALTG RCTL
+                F5
+
+                                PGUP
+                                PGDN
+LSHT                     RSHT
+LCTL Fn WIN               RCTL
 
 
     13    14    15    16    17    18    19    20    21    22    23    24    25    26    27
@@ -21,18 +23,20 @@ LCTL Fn WIN     SPAC ALTG RCTL
 
 02
 
-03                                                                          RGHT  DOWN  LEFT
+03              ALTG                    B     SPAC  N     , <   / ?         RGHT  DOWN  LEFT
 
 04                    Z     X     C     V     ENTR  M           \ |   . >
 
-05                    A     S     D     F           J           ; :   L
+05                    A     S     D     F           J     K     ; :   L
 
-06              NMLK  Q     W     E     R           U           P     O
+06              NMLK  Q     W     E     R           U     I     P     O
 
-07              PTSC  1     2     3     4           7                 9     END   F11   F12
+07              PTSC  1     2     3     4     F10   7     8     0     9     END   F11   F12
 
 08                    TAB   CPLK  F3    T     BKSP  Y     ] }   [ {   F7    LMB
 
 09                    ` ~   F1    F2    5     F9    6     = +   - _   F8    HOME  DEL   INS
 
 10              ALT   ESC   < >         G     F4          H     F6    ' "   UP
+
+11
