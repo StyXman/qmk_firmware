@@ -23,6 +23,7 @@ enum custom_keycodes {
 
 #define KC_BACKSPACE KC_BSPACE
 
+// (D0, D1) (F0-F2, F3-F5)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT( \
     MO(1),    KC_H, KC_BACKSPACE, \
