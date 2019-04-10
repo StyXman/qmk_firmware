@@ -12,6 +12,43 @@ tray_width  = 309.5;
 tray_length = 114;
 tray_height = 5.4;
 
+module tab(x, y, big_width, small_witdh, direction, length, height, three_dee) {
+    width_dist  = (tray_tab_big_width - tray_tab_small_width) / 2;
+
+    translate([x, y, 0]) {
+        if (three_dee == 1) {
+            linear_extrude(height)
+                polygon([ [0, 0], [big_width, 0],
+                          [big_width - width_dist, direction * length],
+                          [width_dist, direction * length] ]);
+        } else {
+            polygon([ [0, 0], [big_width, 0],
+                      [big_width - width_dist, direction * length],
+                      [width_dist, direction * length] ]);
+        }
+    }
+}
+
+// TODO: real values
+tray_tab_big_width   = 10;
+tray_tab_small_width = 5;
+tray_tab_length      = 5;
+tray_tab_height      = 2;
+
+// there are five of such tabs, plus a smaller one
+// for the moment, model them as the same
+tray_tab_xs = [ 10, 80, 120, 190, 230, 290 ];
+
+// TODO: real values
+screw_tab_big_width   = 10;
+screw_tab_small_width = 8;
+screw_tab_width_dist  = (screw_tab_big_width - screw_tab_small_width) / 2;
+screw_tab_length      = 8;
+screw_tab_height      = 2;
+
+screw_tab_xs = [ 90, 260 ];
+
+
 FFC_min_width = 26.4;  // B
 FFC_max_width = 39.0;
 FFC_length    = 67.5;
@@ -131,17 +168,47 @@ echo(button_body_x=button_body_x, button_body_y=button_body_y);
 
 
 translate([tray_x, tray_y, tray_z]) {
-    // the FFC
-    translate([FFC_distance_from_tray_border, 0, 0]) {
-        color("blue") polygon([ [0, 0], [FFC_max_width, 0], [FFC_min_width, FFC_max_width-FFC_min_width], [FFC_min_width, FFC_length], [0, FFC_length] ]);
-    }
-
     // the tray
     cube([tray_width, tray_length, tray_height]);
+    color ("purple")
+        square([tray_width, tray_length]);
+
+    // the tabs
+    for(index = [0:len(tray_tab_xs) - 1]) {
+        tab(tray_tab_xs[index], 0, tray_tab_big_width, tray_tab_small_width,
+            -1, tray_tab_length, tray_tab_height, 1);
+
+        color ("purple")
+            tab(tray_tab_xs[index], 0, tray_tab_big_width, tray_tab_small_width,
+                -1, tray_tab_length, tray_tab_height, 0);
+    }
+
+    for(index = [0:len(screw_tab_xs) - 1]) {
+        tab(screw_tab_xs[index], tray_length, screw_tab_big_width, screw_tab_small_width,
+            1, screw_tab_length, screw_tab_height, 1);
+
+        color ("purple")
+            tab(screw_tab_xs[index], tray_length, screw_tab_big_width, screw_tab_small_width,
+                1, screw_tab_length, screw_tab_height, 0);
+    }
+
+    // the FFC
+    translate([FFC_distance_from_tray_border, 0, 0]) {
+        color("blue")
+            polygon([ [0, 0], [FFC_max_width, 0],
+                      [FFC_min_width, FFC_max_width-FFC_min_width],
+                      [FFC_min_width, FFC_length], [0, FFC_length] ]);
+    }
 }
 
 translate([board_x, board_y, board_z]) {
-    color("red") cube([board_width, board_length, board_height]);
+    color("red")
+        cube([board_width, board_length, board_height]);
+}
+
+translate([board_x, board_y - 25, board_z]) {
+    color("purple")
+        square([board_width, board_length + 25]);
 }
 
 translate([connector_x, connector_y, connector_z]) {
@@ -163,26 +230,35 @@ translate([connector_x, connector_y, connector_z]) {
 
 translate([teensy_x, teensy_y, teensy_z]) {
     // board
-    color("green") cube([teensy_board_length, teensy_board_width, teensy_board_height]);
+    color("green")
+        cube([teensy_board_length, teensy_board_width, teensy_board_height]);
 
     color("blue") {
         // usb connector
         // it's rotated 90 degrees
-        translate([usb_connector_x, usb_connector_y, usb_connector_z]) cube([usb_connector_length, usb_connector_width, usb_connector_height]);
+        translate([usb_connector_x, usb_connector_y, usb_connector_z])
+            cube([usb_connector_length, usb_connector_width, usb_connector_height]);
     }
 
     color("blue") {
         // button body
         // it's rotated 90 degrees
-        translate([button_body_x, button_body_y, button_body_z]) cube([button_body_length, button_body_width, button_body_height]);
+        translate([button_body_x, button_body_y, button_body_z])
+            cube([button_body_length, button_body_width, button_body_height]);
     }
 
     color("blue") {
         // button
         // it's rotated 90 degrees
-        translate([button_x, button_y, button_z]) linear_extrude(button_height) resize([button_length, button_width]) circle(button_length);
+        translate([button_x, button_y, button_z])
+            linear_extrude(button_height)
+                resize([button_length, button_width])
+                    circle(button_length);
     }
 
-    translate([0, 0, -2.54]) cube([teensy_pins / 2 * 2.54, 2.54, 2.54]);
-    translate([0, teensy_board_width - 2.54, -2.54]) cube([teensy_pins / 2 * 2.54, 2.54, 2.54]);
+    // spacers
+    translate([0, 0, -2.54])
+        cube([teensy_pins / 2 * 2.54, 2.54, 2.54]);
+    translate([0, teensy_board_width - 2.54, -2.54])
+        cube([teensy_pins / 2 * 2.54, 2.54, 2.54]);
 }
