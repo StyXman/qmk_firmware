@@ -178,31 +178,37 @@ button_body_z = teensy_board_surface;
 echo(button_body_x=button_body_x, button_body_y=button_body_y);
 
 
+// 2D objects for exporting to DXF
 translate([tray_x, tray_y, tray_z]) {
-    // the tray
-    cube([tray_width, tray_length, tray_height]);
-    color ("purple")
+    // the 2D versions, so they're exported too
+    color ("purple") {
         square([tray_width, tray_length]);
 
-    // the tabs
-    for(index = [0:len(tray_tab_xs) - 1]) {
-        tab(tray_tab_xs[index], 0, tray_tab_big_width, tray_tab_small_width,
-            -1, tray_tab_length, tray_tab_height, 1);
-
-        color ("purple")
+        for(index = [0:len(tray_tab_xs) - 1]) {
             tab(tray_tab_xs[index], 0, tray_tab_big_width, tray_tab_small_width,
                 -1, tray_tab_length, tray_tab_height, 0);
-    }
+        }
 
-    for(index = [0:len(screw_tab_xs) - 1]) {
-        tab(screw_tab_xs[index], tray_length, screw_tab_big_width, screw_tab_small_width,
-            1, screw_tab_length, screw_tab_height, 1);
-
-        color ("purple")
+        for(index = [0:len(screw_tab_xs) - 1]) {
             tab(screw_tab_xs[index], tray_length, screw_tab_big_width, screw_tab_small_width,
                 1, screw_tab_length, screw_tab_height, 0);
+        }
     }
+}
 
+translate([ board_x - usb_plug_padding_x - board_padding,
+            board_y - 25 - board_padding,
+            board_z ]) {
+    color("purple")
+        square([ board_width + usb_plug_padding_x + board_padding * 2,
+                 board_length + 25 + board_padding * 2 ]);
+}
+
+
+// the 3D objects now
+
+// the keyboard
+translate([tray_x, tray_y, tray_z]) {
     // the FFC
     translate([FFC_distance_from_tray_border, 0, 0]) {
         color("blue")
@@ -210,16 +216,25 @@ translate([tray_x, tray_y, tray_z]) {
                       [FFC_min_width, FFC_max_width-FFC_min_width],
                       [FFC_min_width, FFC_length], [0, FFC_length] ]);
     }
+
+    // the tray
+    cube([tray_width, tray_length, tray_height]);
+
+    // the tabs
+    for(index = [0:len(tray_tab_xs) - 1]) {
+        tab(tray_tab_xs[index], 0, tray_tab_big_width, tray_tab_small_width,
+            -1, tray_tab_length, tray_tab_height, 1);
+    }
+
+    for(index = [0:len(screw_tab_xs) - 1]) {
+        tab(screw_tab_xs[index], tray_length, screw_tab_big_width, screw_tab_small_width,
+            1, screw_tab_length, screw_tab_height, 1);
+    }
 }
 
 translate([board_x, board_y, board_z]) {
     color("red")
         cube([board_width, board_length, board_height]);
-}
-
-translate([board_x, board_y - 25, board_z]) {
-    color("purple")
-        square([board_width, board_length + 25]);
 }
 
 translate([connector_x, connector_y, connector_z]) {
