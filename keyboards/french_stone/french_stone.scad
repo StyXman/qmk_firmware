@@ -69,6 +69,13 @@ usb_connector_width  = 7.5;
 usb_connector_length = 5;
 usb_connector_height = 2.5;
 
+// usb plug
+usb_plug_width  = 11;
+usb_plug_length = 27.8;
+usb_plug_height = 7.8;
+usb_plug_padding_x = 10;
+usb_plug_padding_y = 5;
+
 // board
 board_width  = 75;
 board_extrusion = teensy_board_width + teensy_padding_y;
@@ -151,6 +158,11 @@ echo(teensy_x=teensy_x - board_x, teensy_y=teensy_y - board_y);
 usb_connector_x = 0;
 usb_connector_y = (teensy_board_width - usb_connector_width) / 2;
 usb_connector_z = teensy_board_surface;
+
+// relative to the teensy board
+usb_plug_x = usb_connector_x - usb_plug_length;
+usb_plug_y = usb_connector_y + usb_connector_width  / 2 - usb_plug_width  / 2;
+usb_plug_z = usb_connector_z + usb_connector_height / 2 - usb_plug_height / 2;
 
 button_centre = 1.27 + (teensy_board_length - 35.56 + 29.97);
 echo(button_centre=button_centre);
@@ -260,4 +272,9 @@ translate([teensy_x, teensy_y, teensy_z]) {
         cube([teensy_pins / 2 * 2.54, 2.54, 2.54]);
     translate([0, teensy_board_width - 2.54, -2.54])
         cube([teensy_pins / 2 * 2.54, 2.54, 2.54]);
+
+    // usb_plug
+    color("chocolate")
+        translate([usb_plug_x, usb_plug_y, usb_plug_z])
+            cube([usb_plug_length, usb_plug_width, usb_plug_height]);
 }
