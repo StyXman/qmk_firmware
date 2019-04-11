@@ -202,6 +202,7 @@ translate([tray_x, tray_y, tray_z]) {
     }
 }
 
+// the circuit board
 translate([ board_x - usb_plug_padding_x - board_padding,
             board_y - 25 - board_padding,
             board_z ]) {
