@@ -179,6 +179,11 @@ button_body_z = teensy_board_surface;
 echo(button_body_x=button_body_x, button_body_y=button_body_y);
 
 
+// the frame
+color("purple")
+    square([ frame_width, frame_length ]);
+
+/*
 // 2D objects for exporting to DXF
 translate([tray_x, tray_y, tray_z]) {
     // the 2D versions, so they're exported too
