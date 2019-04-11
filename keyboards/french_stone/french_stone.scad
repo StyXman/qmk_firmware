@@ -29,25 +29,24 @@ module tab(x, y, big_width, small_witdh, direction, length, height, three_dee) {
     }
 }
 
-// TODO: real values
-tray_tab_big_width   = 10;
-tray_tab_small_width = 5;
-tray_tab_length      = 5;
-tray_tab_height      = 2;
+tray_tab_big_width   = 13.1;  // 8.5 for the small tab
+tray_tab_small_width = 8.5;   // 5.6
+tray_tab_length      = 5;     // 2.5
+tray_tab_height      = 2;     // 0.5
 
 // there are five of such tabs, plus a smaller one
 // for the moment, model them as the same
-tray_tab_xs = [ 10, 80, 120, 190, 230, 290 ];
+tray_tab_xs = [ 10, 81, 121.5, 81 + 100.5, 81 + 137.5, tray_width - 22.5 ];
 
 // TODO: real values
-screw_tab_big_width   = 10;
-screw_tab_small_width = 8;
+screw_tab_big_width   = 11.8;
+screw_tab_small_width = 6;
 screw_tab_width_dist  = (screw_tab_big_width - screw_tab_small_width) / 2;
-screw_tab_length      = 8;
+screw_tab_length      = 6.5;
 screw_tab_height      = 2;
 
-screw_tab_xs = [ 90, 260 ];
-
+screw_tab_xs = [ 96.5 - screw_tab_big_width / 2,
+                 96.5 + 143.5 - screw_tab_big_width / 2 ];
 
 FFC_min_width = 26.4;  // B
 FFC_max_width = 39.0;
