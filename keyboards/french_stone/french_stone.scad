@@ -79,8 +79,9 @@ usb_plug_padding_y = 5;
 // board
 board_width  = 75;
 board_extrusion = teensy_board_width + teensy_padding_y;
-board_length = tray_length - FFC_length - FFC_insertion + board_extrusion;
+board_length = tray_length - FFC_length - FFC_insertion + board_extrusion + usb_plug_padding_y;
 board_height = 1.6;
+board_padding = 5;
 
 // the connector
 // see https://www.mouser.fr/datasheet/2/909/6200-1381185.pdf
