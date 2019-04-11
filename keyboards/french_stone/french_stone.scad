@@ -119,7 +119,7 @@ FFC_to_conector_body_side = (connector_width - FFC_min_width - lateral_extrusion
 
 // keyboard
 tray_x = (frame_width - tray_width) / 2;
-tray_y = frame_length - 10 - board_extrusion;
+tray_y = frame_length - 10 - board_extrusion - tray_length;
 tray_z = frame_height - tray_height;
 echo(tray_x=tray_x, tray_y=tray_y, tray_z=tray_z, depth_from_top=frame_height - tray_z);
 
